@@ -1,9 +1,8 @@
 CSS125P Project - HLInt (Simple Interpreter for HL)
 
-Group Name: [Group Name]
+Group Name: Group 3
 
 Members:
-1. [Last Name, First Name M.] - [Section]
-2. [Last Name, First Name M.] - [Section]
-3. [Last Name, First Name M.] - [Section]
-4. [Last Name, First Name M.] - [Section]
+1. Guiang, Tristan Kier - [Section]
+2. Adame, Samuela Ysebelle - [Section]
+3. Sebastian, Kendrick - [Section]

@@ -123,7 +123,7 @@ Detected errors include:
 | `PROG1.HL`, `PROG2.HL`, `PROG3.HL` | Sample programs from the project specification |
 | `ERROR1.HL`, `ERROR2.HL`, `ERROR3.HL` | Programs with a missing `;`, an undeclared variable, and an unsupported `*` |
 | `test_hlint.py` | Self-check for the sample programs, output files, and error cases |
-| `docs/` | Project documentation |
+| `docs/` | Project documentation and [submission checklist](docs/SUBMISSION.md) |
 | `MEMBERS.txt` | Group members |
 
 ## Testing
@@ -147,4 +147,8 @@ Prints `All tests passed.` on success.
 
 ## Team
 
-See [`MEMBERS.txt`](MEMBERS.txt).
+**Group 3**
+
+- Guiang, Tristan Kier
+- Adame, Samuela Ysebelle
+- Sebastian, Kendrick
