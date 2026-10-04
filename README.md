@@ -20,14 +20,14 @@ Requires Python 3.8 or later.
 ```bash
 git clone https://github.com/Kaigosama/HLint.git
 cd HLint
-python HLInt.py PROG3.HL
+python HLInt.py programs/PROG3.HL
 ```
 
 Output:
 
 ```
 HLInt - HL Interpreter
-Source file : PROG3.HL
+Source file : programs/PROG3.HL
 Created     : NOSPACES.TXT, RES_SYM.TXT
 
 NO ERROR(S) FOUND
@@ -100,7 +100,7 @@ SYMBOLS:
 ## Error reporting
 
 ```
-$ python HLInt.py ERROR1.HL
+$ python HLInt.py programs/ERROR1.HL
 ...
 ERROR
   line 2: expected ';', found 'output'
@@ -117,14 +117,24 @@ Detected errors include:
 
 ## Project files
 
-| File | Purpose |
-|---|---|
-| `HLInt.py` | The interpreter: tokenizer, recursive-descent parser, and executor |
-| `PROG1.HL`, `PROG2.HL`, `PROG3.HL` | Sample programs from the project specification |
-| `ERROR1.HL`, `ERROR2.HL`, `ERROR3.HL` | Programs with a missing `;`, an undeclared variable, and an unsupported `*` |
-| `test_hlint.py` | Self-check for the sample programs, output files, and error cases |
-| `docs/` | Project documentation and [submission checklist](docs/SUBMISSION.md) |
-| `MEMBERS.txt` | Group members |
+```
+HLint/
+├── HLInt.py            interpreter: tokenizer, recursive-descent parser, executor
+├── test_hlint.py       self-check for samples, output files, and error cases
+├── programs/
+│   ├── PROG1.HL        sample programs from the project specification
+│   ├── PROG2.HL
+│   ├── PROG3.HL
+│   ├── ERROR1.HL       missing ';'
+│   ├── ERROR2.HL       undeclared variable
+│   └── ERROR3.HL       unsupported '*'
+└── docs/
+    ├── CSS125P_Project_Documentation_HLint.docx
+    ├── MEMBERS.txt     group members
+    └── SUBMISSION.md   submission checklist
+```
+
+`NOSPACES.TXT` and `RES_SYM.TXT` are created in the folder you run the interpreter from.
 
 ## Testing
 
@@ -147,7 +157,7 @@ Prints `All tests passed.` on success.
 
 ## Team
 
-**Group 3**
+**Group 3**, section AM2
 
 - Guiang, Tristan Kier
 - Adame, Samuela Ysebelle

@@ -1,6 +1,6 @@
 """HLInt.py - a simple interpreter for the hypothetical language HL.
 
-Usage:  python HLInt.py PROG1.HL
+Usage:  python HLInt.py programs/PROG1.HL
 
 Steps (per CSS125P project specification):
   1. Read the HL source file.

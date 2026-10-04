@@ -1,4 +1,6 @@
 """Self-check for HLInt.py. Run: python test_hlint.py"""
+import os
+
 from HLInt import HLError, parse, reserved_and_symbols, run, strip_spaces, tokenize
 
 
@@ -8,7 +10,8 @@ def interpret(source):
     return lines
 
 
-def read(path):
+def read(name):
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "programs", name)
     with open(path, encoding="utf-8-sig") as f:
         return f.read()
 

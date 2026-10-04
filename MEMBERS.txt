@@ -1,8 +1,0 @@
-CSS125P Project - HLInt (Simple Interpreter for HL)
-
-Group Name: Group 3
-
-Members:
-1. Guiang, Tristan Kier - [Section]
-2. Adame, Samuela Ysebelle - [Section]
-3. Sebastian, Kendrick - [Section]
