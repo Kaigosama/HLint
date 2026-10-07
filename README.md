@@ -1,17 +1,17 @@
 # HLint
 
-A simple interpreter for **HL**, a small hypothetical programming language, written for the CSS125P (Principles of Programming Languages) course project.
+A small interpreter for **HL**, a minimal toy programming language with integers, doubles, arithmetic, output, and one-way `if` statements.
 
-The interpreter is a single Python file, `HLInt.py`, with no dependencies outside the standard library.
+HLint is a single Python file, `HLInt.py`, with no dependencies outside the standard library.
 
-## What it does
+## Features
 
-Given an HL source file, `HLInt.py`:
+For each HL source file, HLint:
 
-1. Removes all spaces, tabs, and line breaks, and writes the result to `NOSPACES.TXT`.
-2. Writes every reserved word and symbol found in the program to `RES_SYM.TXT`.
-3. Checks the program and prints `ERROR` (with the line number and reason) or `NO ERROR(S) FOUND`.
-4. If there are no errors, executes the program and prints its output.
+1. Strips all whitespace and writes the result to `NOSPACES.TXT`.
+2. Lists every reserved word and symbol in the program in `RES_SYM.TXT`.
+3. Checks syntax and types, and prints `ERROR` (with the line number and reason) or `NO ERROR(S) FOUND`.
+4. If the program is valid, executes it and prints its output.
 
 ## Quick start
 
@@ -22,8 +22,6 @@ git clone https://github.com/Kaigosama/HLint.git
 cd HLint
 python HLInt.py programs/PROG3.HL
 ```
-
-Output:
 
 ```
 HLInt - HL Interpreter
@@ -57,23 +55,37 @@ if(x<5)
 | Output | `output << "<string>" ;` or `output << <expr> ;` | `output<<"hello";` `output<<x;` |
 | One-way if | `if ( <expr> <relop> <expr> ) <statement>` | `if(x<5) output<<x;` |
 
-**Data types**
+### Data types
 
-- `integer`: whole numbers. Integer values written in the program must be a single digit (0–9).
+- `integer`: whole numbers. Integer literals are single digits (0–9).
 - `double`: real numbers with up to 2 decimal places. Results print with 2 decimals.
 
-**Relational operators:** `>`, `<`, `==`, `!=`
+### Relational operators
 
-**Rules**
+`>`, `<`, `==`, `!=`
+
+### Rules
 
 - Variables must be declared before use and cannot be declared twice.
 - A double value cannot be stored in an integer variable. An integer stored in a double variable is converted.
 - Keywords and variable names are case-insensitive (`If`, `OUTPUT`, and `X` are valid).
 - Strings may use straight (`"`) or curly (`“ ”`) quotes.
 
+## How it works
+
+`HLInt.py` runs the source through three stages:
+
+| Stage | Function | Job |
+|---|---|---|
+| Tokenizer | `tokenize()` | Splits the source into keywords, identifiers, numbers, strings, and symbols with one regular expression |
+| Parser | `Parser` | Recursive-descent parser that builds a list of statements and checks declarations and types |
+| Executor | `run()` | Walks the statements, evaluates expressions, and prints output |
+
+All errors are raised as `HLError` with the line number.
+
 ## Output files
 
-For `PROG3.HL`:
+For `programs/PROG3.HL`:
 
 `NOSPACES.TXT`
 ```
@@ -97,6 +109,8 @@ SYMBOLS:
 <<
 ```
 
+Both files are written to the folder you run HLint from.
+
 ## Error reporting
 
 ```
@@ -106,35 +120,35 @@ ERROR
   line 2: expected ';', found 'output'
 ```
 
-Detected errors include:
+Detected errors:
 
 - missing or unexpected symbols
 - invalid characters, such as `*`
 - undeclared or redeclared variables
 - a double value assigned to an integer variable
-- multi-digit integer values or doubles with more than 2 decimals
+- multi-digit integer literals or doubles with more than 2 decimals
 - a variable used before it has a value (reported at run time)
 
-## Project files
+## Examples
+
+| Program | Result |
+|---|---|
+| `programs/PROG1.HL` | `5` |
+| `programs/PROG2.HL` | `4.25` |
+| `programs/PROG3.HL` | `3` |
+| `programs/ERROR1.HL` | `ERROR` – line 2: expected `;` |
+| `programs/ERROR2.HL` | `ERROR` – line 2: variable `y` is not declared |
+| `programs/ERROR3.HL` | `ERROR` – line 2: invalid character `*` |
+
+## Project structure
 
 ```
 HLint/
-├── HLInt.py            interpreter: tokenizer, recursive-descent parser, executor
-├── test_hlint.py       self-check for samples, output files, and error cases
-├── programs/
-│   ├── PROG1.HL        sample programs from the project specification
-│   ├── PROG2.HL
-│   ├── PROG3.HL
-│   ├── ERROR1.HL       missing ';'
-│   ├── ERROR2.HL       undeclared variable
-│   └── ERROR3.HL       unsupported '*'
-└── docs/
-    ├── CSS125P_Project_Documentation_HLint.docx
-    ├── MEMBERS.txt     group members
-    └── SUBMISSION.md   submission checklist
+├── HLInt.py        interpreter
+├── test_hlint.py   tests
+├── programs/       example HL programs
+└── docs/           documentation
 ```
-
-`NOSPACES.TXT` and `RES_SYM.TXT` are created in the folder you run the interpreter from.
 
 ## Testing
 
@@ -143,22 +157,3 @@ python test_hlint.py
 ```
 
 Prints `All tests passed.` on success.
-
-## Expected results
-
-| Program | Output |
-|---|---|
-| `PROG1.HL` | `5` |
-| `PROG2.HL` | `4.25` |
-| `PROG3.HL` | `3` |
-| `ERROR1.HL` | `ERROR` – line 2: expected `;` |
-| `ERROR2.HL` | `ERROR` – line 2: variable `y` is not declared |
-| `ERROR3.HL` | `ERROR` – line 2: invalid character `*` |
-
-## Team
-
-**Group 3**, section AM2
-
-- Guiang, Tristan Kier
-- Adame, Samuela Ysebelle
-- Sebastian, Kendrick
