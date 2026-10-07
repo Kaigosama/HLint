@@ -146,8 +146,7 @@ Detected errors:
 HLint/
 ├── HLInt.py        interpreter
 ├── test_hlint.py   tests
-├── programs/       example HL programs
-└── docs/           documentation
+└── programs/       example HL programs
 ```
 
 ## Testing
